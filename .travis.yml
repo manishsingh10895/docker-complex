@@ -11,5 +11,10 @@ script:
 after_success:
   - docker build -t manishsingh10895/docker-complex-client  ./client
   - docker build -t manishsingh10895/docker-complex-server  ./server
-  - docker build -t manishsingh10895/docker-complex-worker  ./worker
+  - docker build -t manishsingh10895/docker-complex-work  ./worker
   - docker build -t manishsingh10895/docker-complex-nginx  ./nginx
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push manishsingh10895/docker-complex-client
+  - docker push manishsingh10895/docker-complex-nginx
+  - docker push manishsingh10895/docker-complex-server
+  - docker push manishsingh10895/docker-complex-work
